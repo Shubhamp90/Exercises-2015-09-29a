@@ -28,9 +28,26 @@ public class Grades {
 
     Scanner keyboard = new Scanner(System.in);
 
-    System.out.print("Enter a grade: ");
-    int grade = keyboard.nextInt();
-    System.out.println("You entered: " + grade);
+    // Total of all grades
+    int total = 0;
+
+    /*
+     * Repeatedly prompt for grade
+     */
+    for (;;) {
+      System.out.print("Enter a grade: ");
+      int grade = keyboard.nextInt();
+      
+      //Look to see if grade is in the right range
+      if (grade >= 0 && grade <= 100) {
+        total += grade;
+      } else if (grade == -1) {
+          //Will not exit valur if not in range
+        break;
+      }
+    }
+
+    System.out.println("Total is: " + total);
 
   }
 
