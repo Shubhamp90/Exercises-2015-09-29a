@@ -31,23 +31,40 @@ public class Grades {
     // Total of all grades
     int total = 0;
 
+    // see valid grades entered
+    int count = 0;
+
     /*
      * Repeatedly prompt for grade
      */
     for (;;) {
       System.out.print("Enter a grade: ");
-      int grade = keyboard.nextInt();
-      
-      //Look to see if grade is in the right range
+      int grade;
+      try {
+        grade = keyboard.nextInt();
+      }catch (Exception e){
+          System.out.println("not an integer");
+          continue;
+      }
+
+      // Check to see if grade is in range
       if (grade >= 0 && grade <= 100) {
         total += grade;
-      } else if (grade == -1) {
-          //Will not exit valur if not in range
+        count++;
+      } else if (grade != -1) {
+        // if grade isn't in range then will not exit value
+        System.out.println("Value out of range");
+      } else {
         break;
       }
     }
 
     System.out.println("Total is: " + total);
+    System.out.println("Count is: " + count);
+    if (count == 0)
+         System.out.println("No grades entered");
+    
+    System.out.println("Average is: " + (float) total / count);
 
   }
 
